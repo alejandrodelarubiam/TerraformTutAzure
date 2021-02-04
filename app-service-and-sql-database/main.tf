@@ -37,12 +37,12 @@ resource "azurerm_app_service" "AS-Terraform" {
   connection_string {
     name  = "Database"
     type  = "SQLServer"
-    value = "Server=tcp:${azurerm_sql_server.tutAzureAlexDbTerraform.fully_qualified_domain_name} Database=${azurerm_sql_database.terraform-sqldatabase.name};User ID=${azurerm_sql_server.terraform-sqlserver.administrator_login};Password=${azurerm_sql_server.terraform-sqlserver.administrator_login_password};Trusted_Connection=False;Encrypt=True;"
+    value = "Server=tcp:${azurerm_sql_server.tutazurealexdbterraform.fully_qualified_domain_name} Database=${azurerm_sql_database.terraform-sqldatabase.name};User ID=${azurerm_sql_server.terraform-sqlserver.administrator_login};Password=${azurerm_sql_server.terraform-sqlserver.administrator_login_password};Trusted_Connection=False;Encrypt=True;"
   }
 }
 
-resource "azurerm_sql_server" "tutAzureAlexDbTerraform" {
-  name                         = "tutAzureAlexDbTerraform"
+resource "azurerm_sql_server" "tutazurealexdbterraform" {
+  name                         = "tutazurealexdbterraform"
   resource_group_name          = azurerm_resource_group.RG-Terraform.name
   location                     = azurerm_resource_group.RG-Terraform.location
   version                      = "12.0"
@@ -54,7 +54,7 @@ resource "azurerm_sql_database" "terraform-sqldatabase" {
   name                = "terraform-sqldatabase"
   resource_group_name = azurerm_resource_group.RG-Terraform.name
   location            = azurerm_resource_group.RG-Terraform.location
-  server_name         = azurerm_sql_server.tutAzureAlexDbTerraform.name
+  server_name         = azurerm_sql_server.tutazurealexdbterraform.name
 
   tags = {
     environment = "production"
