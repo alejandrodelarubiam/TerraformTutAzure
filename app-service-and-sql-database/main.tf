@@ -37,7 +37,7 @@ resource "azurerm_app_service" "AS-Terraform" {
   connection_string {
     name  = "Database"
     type  = "SQLServer"
-    value = "Server=tcp:${azurerm_sql_server.tutazurealexdbterraform.fully_qualified_domain_name} Database=${azurerm_sql_database.terraform-sqldatabase.name};User ID=${azurerm_sql_server.terraform-sqlserver.administrator_login};Password=${azurerm_sql_server.terraform-sqlserver.administrator_login_password};Trusted_Connection=False;Encrypt=True;"
+    value = "Server=tcp:${azurerm_sql_server.tutazurealexdbterraform.fully_qualified_domain_name} Database=${azurerm_sql_database.terraform-sqldatabase.name};User ID=${azurerm_sql_server.tutazurealexdbterraform.administrator_login};Password=${azurerm_sql_server.tutazurealexdbterraform.administrator_login_password};Trusted_Connection=False;Encrypt=True;"
   }
 }
 
