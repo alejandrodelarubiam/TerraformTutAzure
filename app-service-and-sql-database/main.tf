@@ -3,15 +3,15 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "RG-AlexTutAzure {
+resource "azurerm_resource_group" "RG-AlexTutAzure" {
   name     = "terraform-resource-group"
   location = "West Europe"
 }
 
 resource "azurerm_app_service_plan" "ASP-TerraForm" {
   name                = "terraform-appserviceplan"
-  location            = azurerm_resource_group.RG-Terraform.location
-  resource_group_name = azurerm_resource_group.RG-Terraform.name
+  location            = azurerm_resource_group.RG-AlexTutAzure.location
+  resource_group_name = azurerm_resource_group.RG-AlexTutAzure.name
 
   sku {
     tier = "Standard"
@@ -21,8 +21,8 @@ resource "azurerm_app_service_plan" "ASP-TerraForm" {
 
 resource "azurerm_app_service" "AS-Terraform" {
   name                = "app-service-terraform"
-  location            = azurerm_resource_group.RG-Terraform.location
-  resource_group_name = azurerm_resource_group.RG-Terraform.name
+  location            = azurerm_resource_group.RG-AlexTutAzure.location
+  resource_group_name = azurerm_resource_group.RG-AlexTutAzure.name
   app_service_plan_id = azurerm_app_service_plan.ASP-TerraForm.id
 
   site_config {
@@ -43,8 +43,8 @@ resource "azurerm_app_service" "AS-Terraform" {
 
 resource "azurerm_sql_server" "tutazurealexdbterraform" {
   name                         = "tutazurealexdbterraform"
-  resource_group_name          = azurerm_resource_group.RG-Terraform.name
-  location                     = azurerm_resource_group.RG-Terraform.location
+  resource_group_name          = azurerm_resource_group.RG-AlexTutAzure.name
+  location                     = azurerm_resource_group.RG-AlexTutAzure.location
   version                      = "12.0"
   administrator_login          = "houssem"
   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
@@ -52,8 +52,8 @@ resource "azurerm_sql_server" "tutazurealexdbterraform" {
 
 resource "azurerm_sql_database" "terraform-sqldatabase" {
   name                = "terraform-sqldatabase"
-  resource_group_name = azurerm_resource_group.RG-Terraform.name
-  location            = azurerm_resource_group.RG-Terraform.location
+  resource_group_name = azurerm_resource_group.RG-AlexTutAzure.name
+  location            = azurerm_resource_group.RG-AlexTutAzure.location
   server_name         = azurerm_sql_server.tutazurealexdbterraform.name
 
   tags = {
