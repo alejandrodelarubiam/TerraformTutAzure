@@ -4,12 +4,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "RG-AlexTutAzure" {
-  name     = "terraform-resource-group"
+  name     = "terraform-resource-group-alex-tut-azure"
   location = "West Europe"
 }
 
-resource "azurerm_app_service_plan" "ASP-TerraForm" {
-  name                = "terraform-appserviceplan"
+resource "azurerm_app_service_plan" "ASP-AlexTutAzure" {
+  name                = "terraform-appserviceplan-alex-tut-azure"
   location            = azurerm_resource_group.RG-AlexTutAzure.location
   resource_group_name = azurerm_resource_group.RG-AlexTutAzure.name
 
@@ -19,11 +19,11 @@ resource "azurerm_app_service_plan" "ASP-TerraForm" {
   }
 }
 
-resource "azurerm_app_service" "AS-Terraform" {
-  name                = "app-service-terraform"
+resource "azurerm_app_service" "AS-Terraform-AlexTutAzure" {
+  name                = "app-service-terraform-alex-tut-azure"
   location            = azurerm_resource_group.RG-AlexTutAzure.location
   resource_group_name = azurerm_resource_group.RG-AlexTutAzure.name
-  app_service_plan_id = azurerm_app_service_plan.ASP-TerraForm.id
+  app_service_plan_id = azurerm_app_service_plan.ASP-AlexTutAzure.id
 
   site_config {
     dotnet_framework_version = "v4.0"
