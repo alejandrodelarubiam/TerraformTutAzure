@@ -3,7 +3,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "RG-Terraform" {
+resource "azurerm_resource_group" "RG-AlexTutAzure {
   name     = "terraform-resource-group"
   location = "West Europe"
 }
